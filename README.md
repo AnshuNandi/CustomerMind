@@ -3,6 +3,8 @@
 
 An intelligent machine learning system that segments and predicts customer personality types. Built with FastAPI, scikit-learn, and MongoDB.
 
+**🚀 [Live Demo](https://customermind.onrender.com)** | **📊 [GitHub](https://github.com/AnshuNandi/CustomerMind)**
+
 ## Overview
 
 CustomerMind is a complete ML pipeline that identifies distinct customer segments and predicts which segment new customers belong to. The system learns customer personalities from behavioral and demographic data through unsupervised clustering and supervised classification.
@@ -78,11 +80,15 @@ Access the app at `http://localhost:5000`
 
 ## Deployment
 
-Deployed on Render.com with Docker containerization. Application automatically deploys on GitHub push via GitHub Actions.
+Deployed on **Render.com** with Docker containerization. Application automatically deploys on every GitHub push.
 
-**Live URL**: Available on Render after deployment setup
+**🌐 Live Application**: [https://customermind.onrender.com](https://customermind.onrender.com)
 
-**Live Application**: Available at production URL (configured via Render)
+### Deployment Stack
+- **Container**: Docker
+- **Platform**: Render.com (free tier)
+- **Database**: MongoDB Atlas (free tier)
+- **Environment**: Python 3.8, FastAPI, Uvicorn
 
 ## Machine Learning Models
 
