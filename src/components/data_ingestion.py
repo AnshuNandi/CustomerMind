@@ -109,7 +109,11 @@ class DataIngestion:
 
             _schema_config = self.utils.read_schema_config_file()
 
-            dataframe = dataframe.drop(_schema_config["drop_columns"], axis=1)
+            # Only drop columns that exist in the dataframe
+            columns_to_drop = [col for col in _schema_config["drop_columns"] if col in dataframe.columns]
+            if columns_to_drop:
+                dataframe = dataframe.drop(columns_to_drop, axis=1)
+                logging.info(f"Dropped columns: {columns_to_drop}")
 
             logging.info("Got the data from mongodb")
 
