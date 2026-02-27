@@ -6,6 +6,9 @@ from uvicorn import run as app_run
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 
+# Load environment variables
+from dotenv import load_dotenv
+load_dotenv()
 
 from src.pipeline.prediction_pipeline import PredictionPipeline
 from src.pipeline.train_pipeline import TrainPipeline

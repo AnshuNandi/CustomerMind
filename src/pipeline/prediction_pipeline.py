@@ -13,6 +13,8 @@ from src.exception import CustomerException
 import pandas as pd
 import numpy as np
 import sys
+import os
+import glob
 
 import logging
 import sys
@@ -103,13 +105,27 @@ class PredictionPipeline:
             model: latest trained model
         """
         try:
-            prediction_config = PredictionPipelineConfig()
-            model = CustomerClusterEstimator(
-                bucket_name= prediction_config.model_bucket_name,
-                model_path= prediction_config.model_file_name
-            )
+            # Look for the most recent trained model in the artifact directory
+            import glob
+            artifact_dir = "src/artifact"
+            
+            # Find all model.pkl files in artifact directory
+            model_files = glob.glob(f"{artifact_dir}/**/model.pkl", recursive=True)
+            
+            if model_files:
+                # Get the most recently trained model
+                latest_model_path = max(model_files, key=os.path.getctime)
+                logging.info(f"Loading model from: {latest_model_path}")
                 
-            return model
+                model = CustomerClusterEstimator(
+                    bucket_name="customer-segmentation-models",
+                    model_path=latest_model_path
+                )
+                return model
+            else:
+                # Fallback to default if no model found
+                logging.warning("No trained model found in artifacts. Train the model first using /train endpoint")
+                raise Exception("No trained model found. Please train the model first by visiting /train endpoint")
                 
         except Exception as e:
             raise CustomerException(e, sys) from e
