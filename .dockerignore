@@ -1,0 +1,7 @@
+.github/
+flowchart/
+notebooks/
+venv/
+__pycache__/
+.pytest_cache/
+.git/
