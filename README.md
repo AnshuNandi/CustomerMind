@@ -117,11 +117,6 @@ Deployed on **Render.com** with Docker containerization. Application automatical
 - `POST /` - Submit customer data for prediction
 - `GET /train` - Trigger model training pipeline
 
-## Next Steps
 
-- Experiment with LDA and other dimensionality reduction techniques
-- Evaluate Random Forest and Gradient Boosting for classification
-- Deploy to AWS infrastructure
-- Add model monitoring and automated retraining
 
 
